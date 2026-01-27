@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation付き Slider（Slick同期）</title>
+
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+    <style>
+      :root {
+        --nav-h: 56px;
+        --gap: 12px;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP",
+          "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+        background: #0b0c10;
+        color: #eaeaf0;
+      }
+
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 16px;
+        box-sizing: border-box;
+      }
+
+      /* ナビ（タブ） */
+      .nav-slick {
+        height: var(--nav-h);
+        margin-bottom: 12px;
+      }
+
+      .nav-slick .slick-slide {
+        width: auto;
+        /* important: 可変幅タブ */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5px;
+        box-sizing: border-box;
+      }
+
+      .nav-btn {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #eaeaf0;
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform 0.15s ease, background 0.15s ease,
+          border-color 0.15s ease;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+      }
+
+      /* Slickが付与する active を利用して見た目変更 */
+      .nav-slick .slick-center .nav-btn,
+      .nav-slick .slick-active.slick-center .nav-btn {
+        background: rgba(99, 102, 241, 0.22);
+        border-color: rgba(99, 102, 241, 0.7);
+        transform: scale(1.05);
+      }
+
+      /* メイン */
+      .main-slick {
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .main-slick .slick-slide {
+        height: 320px;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      .card {
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .card p {
+        margin: 0;
+        opacity: 0.85;
+      }
+
+      /* Slickのデフォルト矢印を非表示 */
+      .nav-slick .slick-arrow,
+      .main-slick .slick-arrow {
+        display: none !important;
+      }
+
+      /* Slickのドットを非表示 */
+      .nav-slick .slick-dots,
+      .main-slick .slick-dots {
+        display: none !important;
+      }
+
+      /* 端末が細い場合の高さ調整 */
+      @media (max-width: 480px) {
+        .main-slick .slick-slide {
+          height: 260px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <!-- ナビゲーション -->
+      <div class="nav-slick" id="nav">
+        <div><button class="nav-btn" type="button">Overview</button></div>
+        <div><button class="nav-btn" type="button">Specs</button></div>
+        <div><button class="nav-btn" type="button">Gallery</button></div>
+        <div><button class="nav-btn" type="button">Reviews</button></div>
+        <div><button class="nav-btn" type="button">FAQ</button></div>
+        <div><button class="nav-btn" type="button">Support</button></div>
+        <div><button class="nav-btn" type="button">Related</button></div>
+      </div>
+
+      <!-- メインコンテンツ -->
+      <div class="main-slick" id="main">
+        <div>
+          <div class="card">
+            <div>
+              <h2>Overview</h2>
+              <p>メインをスワイプしても、上のナビが同期して中央に来ます。</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div>
+              <h2>Specs</h2>
+              <p>ナビをスワイプしてタブ選択→メインがスライドします。</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div>
+              <h2>Gallery</h2>
+              <p>asNavFor 機能で完全同期（双方向）しています。</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div>
+              <h2>Reviews</h2>
+              <p>active なナビは常に中央寄せ（centerMode）。</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div>
+              <h2>FAQ</h2>
+              <p>タブは可変幅（variableWidth）。</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div>
+              <h2>Support</h2>
+              <p>クリックでもスワイプでも同期。</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div>
+              <h2>Related</h2>
+              <p>必要ならURL連動やHash連動も追加できます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (Slickの依存) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Slick JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        // 1) ナビ（タブ）
+        $('#nav').slick({
+          variableWidth: true,        // 可変幅タブ
+          centerMode: true,            // アクティブを中央に寄せる
+          centerPadding: '0px',       // 中央寄せ時のパディング
+          slidesToShow: 1,            // 中央に1つ表示
+          slidesToScroll: 1,
+          infinite: true,
+          speed: 300,
+          asNavFor: '#main',          // メインと同期（ナビ→メイン）
+          focusOnSelect: true,        // クリックでフォーカス移動
+          swipe: true,
+          touchMove: true,
+        });
+
+        // 2) メイン
+        $('#main').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          speed: 420,
+          asNavFor: '#nav',           // ナビと同期（メイン→ナビ）
+          swipe: true,
+          touchMove: true,
+          arrows: false,              // 矢印非表示
+          dots: false,                // ドット非表示
+        });
+
+        // クリック対象が button の場合でも確実に動くように補強
+        $('#nav .nav-btn').on('click', function() {
+          const index = $(this).closest('.slick-slide').data('slick-index');
+          $('#main').slick('slickGoTo', index);
+        });
+
+        // 追加の補強：メインが変わった時、ナビを中央へ寄せる
+        $('#main').on('afterChange', function(event, slick, currentSlide) {
+          $('#nav').slick('slickGoTo', currentSlide);
+        });
+      });
+    </script>
+  </body>
+
+</html>

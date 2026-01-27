@@ -326,6 +326,113 @@
     <link rel="stylesheet" href="/css/p9255-top--sp.css?2026012611" />
     <!-- //ページ固有 Style -->
 
+    <!-- Category Navigation Slick Styles -->
+    <style>
+      :root {
+        --category-nav-h: 56px;
+        --category-gap: 12px;
+      }
+
+      /* ナビ（タブ） */
+      .category-nav-slick {
+        height: var(--category-nav-h);
+        margin-bottom: 12px;
+      }
+
+      .category-nav-slick .slick-slide {
+        width: auto;
+        /* important: 可変幅タブ */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5px;
+        box-sizing: border-box;
+      }
+
+      .category-nav-btn {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #eaeaf0;
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform 0.15s ease, background 0.15s ease,
+          border-color 0.15s ease;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        width: 100%;
+      }
+
+      /* Slickが付与する active を利用して見た目変更 */
+      .category-nav-slick .slick-center .category-nav-btn,
+      .category-nav-slick .slick-active.slick-center .category-nav-btn {
+        background: rgba(99, 102, 241, 0.22);
+        border-color: rgba(99, 102, 241, 0.7);
+        transform: scale(1.05);
+      }
+
+      /* メイン */
+      .category-main-slick {
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .category-main-slick .slick-slide {
+        height: 320px;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      .category-card {
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+
+      .category-card h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .category-card p {
+        margin: 0;
+        opacity: 0.85;
+      }
+
+      /* Slickのデフォルト矢印を非表示 */
+      .category-nav-slick .slick-arrow,
+      .category-main-slick .slick-arrow {
+        display: none !important;
+      }
+
+      /* Slickのドットを非表示 */
+      .category-nav-slick .slick-dots,
+      .category-main-slick .slick-dots {
+        display: none !important;
+      }
+
+      /* 端末が細い場合の高さ調整 */
+      @media (max-width: 480px) {
+        .category-main-slick .slick-slide {
+          height: 260px;
+        }
+      }
+    </style>
+    <!-- //Category Navigation Slick Styles -->
+
   </head>
   <style>
     .sort {
@@ -419,6 +526,82 @@
                 <!-- <p class="triangle"></p> -->
               </div>
             </div>
+
+            <!-- Category Navigation Slick -->
+            <div class="category-wrap" style="max-width: 960px; margin: 0 auto; padding: 16px; box-sizing: border-box;">
+              <!-- ナビゲーション -->
+              <div class="category-nav-slick" id="category-nav">
+                <div><button class="category-nav-btn" type="button">Overview</button></div>
+                <div><button class="category-nav-btn" type="button">Specs</button></div>
+                <div><button class="category-nav-btn" type="button">Gallery</button></div>
+                <div><button class="category-nav-btn" type="button">Reviews</button></div>
+                <div><button class="category-nav-btn" type="button">FAQ</button></div>
+                <div><button class="category-nav-btn" type="button">Support</button></div>
+                <div><button class="category-nav-btn" type="button">Related</button></div>
+              </div>
+
+              <!-- メインコンテンツ -->
+              <div class="category-main-slick" id="category-main">
+                <div>
+                  <div class="category-card">
+                    <div>
+                      <h2>Overview</h2>
+                      <p>メインをスワイプしても、上のナビが同期して中央に来ます。</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="category-card">
+                    <div>
+                      <h2>Specs</h2>
+                      <p>ナビをスワイプしてタブ選択→メインがスライドします。</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="category-card">
+                    <div>
+                      <h2>Gallery</h2>
+                      <p>asNavFor 機能で完全同期（双方向）しています。</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="category-card">
+                    <div>
+                      <h2>Reviews</h2>
+                      <p>active なナビは常に中央寄せ（centerMode）。</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="category-card">
+                    <div>
+                      <h2>FAQ</h2>
+                      <p>タブは可変幅（variableWidth）。</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="category-card">
+                    <div>
+                      <h2>Support</h2>
+                      <p>クリックでもスワイプでも同期。</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="category-card">
+                    <div>
+                      <h2>Related</h2>
+                      <p>必要ならURL連動やHash連動も追加できます。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- //Category Navigation Slick -->
+
             <input type="hidden" name="event_name[]" value="tame_list" />
             <div class="container" id="photocolle-instagram-content">
               <div>
@@ -4864,6 +5047,52 @@
             $main_slider.slick('slickGoTo', selectTabNum);
             // slideの高さ調整オプションを設定
             $main_slider.slick('slickSetOption', 'adaptiveHeight', true, false);
+          });
+        </script>
+        <script>
+          // Category Navigation Slick 初期化
+          $(document).ready(function() {
+            // 既存のSlickが初期化された後に実行されるように、少し遅延させる
+            setTimeout(function() {
+              // 1) ナビ（タブ）
+              $('#category-nav').slick({
+                variableWidth: true,        // 可変幅タブ
+                centerMode: true,            // アクティブを中央に寄せる
+                centerPadding: '0px',       // 中央寄せ時のパディング
+                slidesToShow: 1,            // 中央に1つ表示
+                slidesToScroll: 1,
+                infinite: true,
+                speed: 300,
+                asNavFor: '#category-main',          // メインと同期（ナビ→メイン）
+                focusOnSelect: true,        // クリックでフォーカス移動
+                swipe: true,
+                touchMove: true,
+              });
+
+              // 2) メイン
+              $('#category-main').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                speed: 420,
+                asNavFor: '#category-nav',           // ナビと同期（メイン→ナビ）
+                swipe: true,
+                touchMove: true,
+                arrows: false,              // 矢印非表示
+                dots: false,                // ドット非表示
+              });
+
+              // クリック対象が button の場合でも確実に動くように補強
+              $('#category-nav .category-nav-btn').on('click', function() {
+                const index = $(this).closest('.slick-slide').data('slick-index');
+                $('#category-main').slick('slickGoTo', index);
+              });
+
+              // 追加の補強：メインが変わった時、ナビを中央へ寄せる
+              $('#category-main').on('afterChange', function(event, slick, currentSlide) {
+                $('#category-nav').slick('slickGoTo', currentSlide);
+              });
+            }, 100);
           });
         </script>
         <script type="text/javascript">
