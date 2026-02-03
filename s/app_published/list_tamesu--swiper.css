@@ -1,0 +1,83 @@
+/* reset */
+.p-global-nav__wrapper {
+  height: auto;
+  border-bottom: none;
+}
+
+/* /reset */
+.sort {
+  text-align: right;
+  height: 40px;
+  width: 38px;
+  background-color: initial;
+  position: fixed;
+  right: 10px;
+}
+
+.sort_image {
+  height: 40px;
+  width: 38px;
+}
+
+.sort_list {
+  text-align: left;
+}
+
+.sort_check {
+  font-size: 62px;
+  position: initial !important;
+  opacity: initial !important;
+  vertical-align: initial !important;
+}
+
+.p-project-lists__dl dt {
+  padding-top: 1px !important;
+  color: #434343;
+}
+
+.mora-banner {
+  width: 100% !important;
+}
+
+#content_mora {
+  display: none;
+}
+
+.p-project-list--mora dt {
+  overflow: unset !important;
+  float: unset !important;
+}
+
+/* タブナビゲーションのスタイル */
+.tab-nav-item {
+  cursor: pointer;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+.tab-nav-item.active {
+  color: #e74224;
+  border-bottom: 3px solid #e74224;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.p-global-nav__menu-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.p-global-nav__menu {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s, border-bottom 0.3s;
+}

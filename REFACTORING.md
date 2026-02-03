@@ -4,7 +4,7 @@
 
 `list_tamesu--swiper.html` ファイル内で使用していた Slick カルーセルライブラリによるタブ風ナビゲーション機能を、シンプルなタブナビゲーション実装（クリックでコンテンツを切り替える方式）に置き換えました。
 
-**変更日**: 2026年1月28日  
+**変更日**: 2026 年 1 月 28 日  
 **対象ファイル**: `s/app_published/list_tamesu--swiper.html`
 
 ---
@@ -17,7 +17,7 @@
 
 グローバルナビゲーション内のタブ要素に、タブ制御用のクラスと属性を追加しました。
 
-**変更箇所**: 約407-410行目
+**変更箇所**: 約 407-410 行目
 
 ```html
 <!-- タメせるタブ -->
@@ -33,9 +33,9 @@
 
 #### コンテンツ要素
 
-メインコンテンツエリア（`.main_slider`）内の2つのコンテンツブロックを、タブ切り替え対象として定義しました。
+メインコンテンツエリア（`.main_slider`）内の 2 つのコンテンツブロックを、タブ切り替え対象として定義しました。
 
-**変更箇所**: 約431行目、4526行目
+**変更箇所**: 約 431 行目、4526 行目
 
 ```html
 <!-- タメせるコンテンツ -->
@@ -59,7 +59,7 @@
 
 タブの選択状態とコンテンツの表示/非表示を制御するためのスタイルを追加しました。
 
-**変更箇所**: 約374-391行目
+**変更箇所**: 約 374-391 行目
 
 ```css
 /* タブナビゲーションのスタイル */
@@ -90,6 +90,7 @@
 Slick カルーセルライブラリの初期化コードと設定オプションを完全に削除しました。
 
 **削除されたコード例**:
+
 - `$('.nav_slider').slick({ ... })`
 - `$('.main_slider').slick({ ... })`
 - Slick の設定オプション（`slidesToShow`, `lazyLoad`, `touchThreshold` など）
@@ -98,26 +99,31 @@ Slick カルーセルライブラリの初期化コードと設定オプショ�
 
 新しいタブ切り替えロジックを実装しました。
 
-**実装箇所**: 約4731-4802行目
+**実装箇所**: 約 4731-4802 行目
 
 **主な機能**:
 
 1. **タブクリックイベント**
+
    - `.tab-nav-item` をクリックすると、対応するコンテンツが表示されます
    - クリックされたタブに `active` クラスが付与され、他のタブからは削除されます
 
 2. **セッションストレージの利用**
+
    - 選択中のタブ情報を `sessionStorage` に保存
    - ページ再訪問時に前回選択していたタブを自動的に復元
 
 3. **検索アイコンの表示制御**
+
    - `#h_sch_app` の表示/非表示をタブに応じて切り替え
-   - タブ0（タメせる）の場合は表示、タブ1（メディタメ）の場合は非表示
+   - タブ 0（タメせる）の場合は表示、タブ 1（メディタメ）の場合は非表示
 
 4. **ソートアイコンの表示制御**
+
    - `#sort_icon` の表示/非表示を `event_name` の値に応じて切り替え
 
 5. **Google Analytics イベント送信の維持**
+
    - タブ切り替え時に既存の `ga('send', 'event', ...)` 呼び出しを維持
    - イベント名: `'sp_top'`, アクション: `'tab_change'`, ラベル: ページ名
 
@@ -128,43 +134,43 @@ Slick カルーセルライブラリの初期化コードと設定オプショ�
 
 ```javascript
 $(function () {
-  var $tabNavItems = $('.tab-nav-item');
-  var $tabContents = $('.tab-content');
+  var $tabNavItems = $(".tab-nav-item")
+  var $tabContents = $(".tab-content")
 
   // タブ切り替え関数
   function switchTab(tabIndex) {
     // タブのアクティブ状態を更新
-    $tabNavItems.removeClass('active');
-    $tabNavItems.eq(tabIndex).addClass('active');
+    $tabNavItems.removeClass("active")
+    $tabNavItems.eq(tabIndex).addClass("active")
 
     // コンテンツの表示/非表示を切り替え
-    $tabContents.removeClass('active');
-    $tabContents.eq(tabIndex).addClass('active');
+    $tabContents.removeClass("active")
+    $tabContents.eq(tabIndex).addClass("active")
 
     // セッションに保存
-    window.sessionStorage.setItem('currentSlide', tabIndex);
+    window.sessionStorage.setItem("currentSlide", tabIndex)
 
     // その他の処理（検索アイコン、ソートアイコン、GA送信など）
     // ...
   }
 
   // タブクリックイベント
-  $tabNavItems.on('click', function () {
-    var tabIndex = parseInt($(this).data('tab'), 10);
-    switchTab(tabIndex);
-  });
+  $tabNavItems.on("click", function () {
+    var tabIndex = parseInt($(this).data("tab"), 10)
+    switchTab(tabIndex)
+  })
 
   // 初期タブを設定
-  var initialTab = parseInt(selectTabNum, 10) || 0;
-  switchTab(initialTab);
-});
+  var initialTab = parseInt(selectTabNum, 10) || 0
+  switchTab(initialTab)
+})
 ```
 
 #### 不要になった関数
 
 `readaptHeight` 関数は、Slick 削除に伴い不要になったため、コメントで明示されています。
 
-**箇所**: 約4832行目
+**箇所**: 約 4832 行目
 
 ```javascript
 // Slick削除に伴い、この関数は不要になりました
@@ -177,6 +183,7 @@ $(function () {
 タブ切り替えスクリプトの末尾付近に残っていた Slick 設定の断片を削除しました。
 
 **削除されたコード**:
+
 - `slidesToShow: 1`
 - `lazyLoad: 'progressive'`
 - 関連するコメント
