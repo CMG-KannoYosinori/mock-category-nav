@@ -376,75 +376,10 @@
             <!-- Navigation付き Slider（Swiper同期） -->
             <div class="category-swiper-wrap">
               <div class="swiper nav-swiper" id="nav">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide"><button class="nav-btn" type="button">Overview</button></div>
-                  <div class="swiper-slide"><button class="nav-btn" type="button">Specs</button></div>
-                  <div class="swiper-slide"><button class="nav-btn" type="button">Gallery</button></div>
-                  <div class="swiper-slide"><button class="nav-btn" type="button">Reviews</button></div>
-                  <div class="swiper-slide"><button class="nav-btn" type="button">FAQ</button></div>
-                  <div class="swiper-slide"><button class="nav-btn" type="button">Support</button></div>
-                  <div class="swiper-slide"><button class="nav-btn" type="button">Related</button></div>
-                </div>
+                <div class="swiper-wrapper" id="nav-wrapper"></div>
               </div>
               <div class="swiper main-swiper" id="main">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <div>
-                        <h2>Overview</h2>
-                        <p>メインをスワイプしても、上のナビが同期して中央に来ます。</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <div>
-                        <h2>Specs</h2>
-                        <p>ナビをスワイプしてタブ選択→メインがスライドします。</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <div>
-                        <h2>Gallery</h2>
-                        <p>Thumbs 機能で完全同期（双方向）しています。</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <div>
-                        <h2>Reviews</h2>
-                        <p>active なナビは常に中央寄せ（centeredSlides）。</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <div>
-                        <h2>FAQ</h2>
-                        <p>タブは可変幅（slidesPerView: 'auto'）。</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <div>
-                        <h2>Support</h2>
-                        <p>クリックでもスワイプでも同期。</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="card">
-                      <div>
-                        <h2>Related</h2>
-                        <p>必要ならURL連動やHash連動も追加できます。</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div class="swiper-wrapper" id="main-wrapper"></div>
               </div>
             </div>
             <div class="container" id="photocolle-instagram-content">
@@ -5009,9 +4944,27 @@ $(function(){
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
       (function () {
+        var categorySwiperSlides = [
+          { label: 'Overview', title: 'Overview', desc: 'メインをスワイプしても、上のナビが同期して中央に来ます。' },
+          { label: 'Specs', title: 'Specs', desc: 'ナビをスワイプしてタブ選択→メインがスライドします。' },
+          { label: 'Gallery', title: 'Gallery', desc: 'Thumbs 機能で完全同期（双方向）しています。' },
+          { label: 'Reviews', title: 'Reviews', desc: 'active なナビは常に中央寄せ（centeredSlides）。' },
+          { label: 'FAQ', title: 'FAQ', desc: 'タブは可変幅（slidesPerView: \'auto\'）。' },
+          { label: 'Support', title: 'Support', desc: 'クリックでもスワイプでも同期。' },
+          { label: 'Related', title: 'Related', desc: '必要ならURL連動やHash連動も追加できます。' },
+        ];
+        var navWrapper = document.getElementById('nav-wrapper');
+        var mainWrapper = document.getElementById('main-wrapper');
+        if (!navWrapper || !mainWrapper) return;
+        navWrapper.innerHTML = categorySwiperSlides.map(function (s) {
+          return '<div class="swiper-slide"><button class="nav-btn" type="button">' + s.label + '</button></div>';
+        }).join('');
+        mainWrapper.innerHTML = categorySwiperSlides.map(function (s) {
+          return '<div class="swiper-slide"><div class="card"><div><h2>' + s.title + '</h2><p>' + s.desc + '</p></div></div></div>';
+        }).join('');
         var navEl = document.getElementById('nav');
         var mainEl = document.getElementById('main');
-        if (!navEl || !mainEl) return;
+        var slideCount = categorySwiperSlides.length;
         var navSwiper = new Swiper('#nav', {
           slidesPerView: 'auto',
           spaceBetween: 10,
@@ -5019,18 +4972,22 @@ $(function(){
           centeredSlidesBounds: true,
           slideToClickedSlide: true,
           watchSlidesProgress: true,
+          loop: true,
+          loopedSlides: slideCount,
         });
         var mainSwiper = new Swiper('#main', {
           spaceBetween: 12,
           speed: 420,
           threshold: 8,
+          loop: true,
+          loopedSlides: slideCount,
           thumbs: { swiper: navSwiper },
         });
         navEl.querySelectorAll('.nav-btn').forEach(function (btn, index) {
-          btn.addEventListener('click', function () { mainSwiper.slideTo(index); });
+          btn.addEventListener('click', function () { mainSwiper.slideToLoop(index); });
         });
         mainSwiper.on('slideChange', function () {
-          navSwiper.slideTo(mainSwiper.activeIndex);
+          navSwiper.slideToLoop(mainSwiper.realIndex);
         });
       })();
     </script>
