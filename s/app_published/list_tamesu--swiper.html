@@ -4974,6 +4974,7 @@ $(function(){
           watchSlidesProgress: true,
           loop: true,
           loopedSlides: slideCount,
+          initialSlide: 0,
         });
         var mainSwiper = new Swiper('#main', {
           spaceBetween: 12,
@@ -4981,8 +4982,11 @@ $(function(){
           threshold: 8,
           loop: true,
           loopedSlides: slideCount,
+          initialSlide: 0,
           thumbs: { swiper: navSwiper },
         });
+        navSwiper.slideToLoop(0, 0);
+        mainSwiper.slideToLoop(0, 0);
         navEl.querySelectorAll('.nav-btn').forEach(function (btn, index) {
           btn.addEventListener('click', function () { mainSwiper.slideToLoop(index); });
         });
