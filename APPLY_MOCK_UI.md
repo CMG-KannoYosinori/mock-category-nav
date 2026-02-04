@@ -4,6 +4,7 @@
 
 ## 概要
 
+
 - **元ソース**: `mock/index.html`
 - **適用先**: `s/app_published/list_tamesu--swiper.html`
 - **挿入位置**: 「タメせる」タブ内の `<input type="hidden" name="event_name[]" value="tame_list" />` の直下（374 行目付近）
