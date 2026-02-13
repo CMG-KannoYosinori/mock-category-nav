@@ -100,10 +100,6 @@ body {
   overflow-x: hidden;
 }
 
- section {
-  display: block;
-}
-
 /* ===== t.css ===== */
 html,
 body,
@@ -136,21 +132,11 @@ ul {
   list-style: none;
 }
 
-a img {
-  border: 0;
-}
-
-
-section {
-  display: block;
-}
-
 body {
   background: #fff;
   color: #333;
   font-family: sans-serif;
   font-size: 14px;
-  -webkit-text-size-adjust: 100%;
 }
 
 a {
@@ -160,10 +146,6 @@ a {
 a:link, a:visited, a:hover, a:active {
   color: inherit;
 }
-
-/* IE10以上で矢印を消す */
-
-/* フォーカス時 */
 
 .top {
   overflow: hidden;
@@ -182,25 +164,15 @@ a:link, a:visited, a:hover, a:active {
   width: 138px;
 }
 .top-c-card-more {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   border: none;
   color: #ff8d1a;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: wrap;
   font-size: 14px;
   height: 206.586px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   justify-items: center;
 }
 .top-c-card-more p {
@@ -217,15 +189,9 @@ a:link, a:visited, a:hover, a:active {
   padding: 8px 4px;
 }
 .top-c-card-block--badge {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  align-items: center;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 .top-c-card-block--badge dl {
   margin-left: 4px;
@@ -235,15 +201,9 @@ a:link, a:visited, a:hover, a:active {
   width: 30px;
 }
 .top-c-container-ico {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  align-items: center;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 .top-c-container-ico-white {
   height: 25px;
@@ -337,21 +297,13 @@ a:link, a:visited, a:hover, a:active {
 .top .swiper-slide {
   align-items: center;
   background: #fff;
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 .top .swiper-slide img {
   display: block;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 100%;
 }
 .top .icon_type_2 {
@@ -516,19 +468,9 @@ a:link, a:visited, a:hover, a:active {
   width: 100%;
 }
 .top .swiper-slide {
-  -webkit-align-items: center;
   align-items: center;
   background: #fff;
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 .top .swiper-slide img {
