@@ -645,29 +645,29 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script>
       (function () {
+        // カテゴリタブ（mySwiper2）のスライド数を取得。mySwiper3 の loopedSlides に渡す
         var slideCount = document.querySelectorAll('.mySwiper2 .swiper-slide').length;
 
+        // カテゴリタブ用スライダー（総合・食品・ドリンク…）
         var swiper2 = new Swiper(".mySwiper2", {
           loop: true,
           spaceBetween: 20,
           centeredSlides: true,
           slidesPerView: "auto",
-          slideToClickedSlide: true,
-          controller: {
-            control: undefined
-          }
+          slideToClickedSlide: true, // クリックしたタブの位置へスライド
+          controller: { control: undefined } // 後で swiper3 を設定
         });
 
+        // コンテンツ用スライダー（カテゴリごとの商品リスト）
         var swiper3 = new Swiper(".mySwiper3", {
           loop: true,
           slidesPerView: 1,
           centeredSlides: true,
-          loopedSlides: slideCount,
-          controller: {
-            control: swiper2
-          }
+          loopedSlides: slideCount, // タブ数と揃えてループを正しく動作させる
+          controller: { control: swiper2 } // コンテンツをスワイプするとタブが追従
         });
 
+        // タブをクリック/スワイプするとコンテンツが連動
         swiper2.controller.control = swiper3;
       })();
     </script>
