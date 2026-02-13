@@ -1,4 +1,3 @@
-@charset "UTF-8";
 
 /* ===== pass_monitor.css ===== */
 .c-label-2 {
@@ -46,31 +45,31 @@
 .p-project-lists li {
   width: 100%;
 }
-@media only screen and (min-width: 320px) {
+@media (min-width: 320px) {
   .p-project-lists li {
     float: left;
     width: 33.3333333333%;
   }
 }
-@media only screen and (min-width: 480px) {
+@media (min-width: 480px) {
   .p-project-lists li {
     float: left;
     width: 33.3333333333%;
   }
 }
-@media only screen and (min-width: 640px) {
+@media (min-width: 640px) {
   .p-project-lists li {
     float: left;
     width: 25%;
   }
 }
-@media only screen and (min-width: 800px) {
+@media (min-width: 800px) {
   .p-project-lists li {
     float: left;
     width: 25%;
   }
 }
-@media only screen and (min-width: 960px) {
+@media (min-width: 960px) {
   .p-project-lists li {
     float: left;
     width: 20%;
@@ -96,57 +95,7 @@
   font-size: 0 !important;
 }
 
-body {
-  overflow-x: hidden;
-}
-
 /* ===== t.css ===== */
-html,
-body,
-div,
-span,
-h2,
-p,
-a,
-img,
-var,
-dl,
-dt,
-ul,
-li,
-section {
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  margin: 0;
-  padding: 0;
-  vertical-align: baseline;
-}
-
-html {
-  line-height: 1;
-}
-
-
-ul {
-  list-style: none;
-}
-
-body {
-  background: #fff;
-  color: #333;
-  font-family: sans-serif;
-  font-size: 14px;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-a:link, a:visited, a:hover, a:active {
-  color: inherit;
-}
-
 .top {
   overflow: hidden;
 }
@@ -239,12 +188,12 @@ a:link, a:visited, a:hover, a:active {
   padding-right: 16px;
   white-space: inherit;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top-p-ranking .p-project-lists {
     max-width: 375px;
   }
 }
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .top-p-ranking .p-project-lists {
     max-width: 740px;
   }
@@ -254,7 +203,7 @@ a:link, a:visited, a:hover, a:active {
   margin-top: 8px;
   width: 140px;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top-p-ranking__card {
     font-size: 12px;
     width: 167px;
@@ -263,7 +212,7 @@ a:link, a:visited, a:hover, a:active {
 .top-p-ranking__more {
   height: 216.586px;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top-p-ranking__more {
     height: 243.586px;
   }
@@ -280,12 +229,12 @@ a:link, a:visited, a:hover, a:active {
 .top .mySwiper3 {
   max-width: 320px;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top .mySwiper3 {
     max-width: 375px;
   }
 }
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .top .mySwiper3 {
     max-width: 740px;
   }
@@ -412,12 +361,12 @@ a:link, a:visited, a:hover, a:active {
   padding-right: 16px;
   white-space: inherit;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top-p-ranking .p-project-lists {
     max-width: 375px;
   }
 }
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .top-p-ranking .p-project-lists {
     max-width: 740px;
   }
@@ -427,7 +376,7 @@ a:link, a:visited, a:hover, a:active {
   margin-top: 8px;
   width: 140px;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top-p-ranking__card {
     font-size: 12px;
     width: 167px;
@@ -436,7 +385,7 @@ a:link, a:visited, a:hover, a:active {
 .top-p-ranking__more {
   height: 216.586px;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top-p-ranking__more {
     height: 243.586px;
   }
@@ -453,12 +402,12 @@ a:link, a:visited, a:hover, a:active {
 .top .mySwiper3 {
   max-width: 320px;
 }
-@media screen and (min-width: 375px) {
+@media (min-width: 375px) {
   .top .mySwiper3 {
     max-width: 375px;
   }
 }
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .top .mySwiper3 {
     max-width: 740px;
   }
