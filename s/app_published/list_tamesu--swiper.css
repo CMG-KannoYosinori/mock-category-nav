@@ -51,7 +51,9 @@
 /* タブナビゲーションのスタイル */
 .tab-nav-item {
   cursor: pointer;
-  transition: color 0.3s, border-bottom 0.3s;
+  transition:
+    color 0.3s,
+    border-bottom 0.3s;
 }
 .tab-nav-item.active {
   color: #e74224;
@@ -70,15 +72,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 }
 
 .p-global-nav__menu {
   cursor: pointer;
   width: 100%;
   text-align: center;
-  padding: 10px 0;
+  padding: 20px 0 17px;
   border-bottom: 3px solid transparent;
-  transition: color 0.3s, border-bottom 0.3s;
+  transition:
+    color 0.3s,
+    border-bottom 0.3s;
 }
-
