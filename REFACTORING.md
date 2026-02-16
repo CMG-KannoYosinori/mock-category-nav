@@ -218,7 +218,7 @@ $(function () {
 
 ### プロジェクト全体での利用状況
 
-- 同ディレクトリ内の `list_tamesu.html` では、依然として Slick が使用されています
+- 同ディレクトリ内の `list_tamesu--original.html` では、依然として Slick が使用されています
   - `slick.css` および `slick.min.js` が読み込まれています
   - `.nav_slider` と `.main_slider` に対して Slick が初期化されています
 
@@ -230,7 +230,7 @@ $(function () {
 
 プロジェクト全体から Slick を完全に削除する場合は、以下の手順が必要です:
 
-1. `list_tamesu.html` も同様にタブナビゲーションにリファクタリング
+1. `list_tamesu--original.html` も同様にタブナビゲーションにリファクタリング
 2. プロジェクト内で Slick が使用されていないことを確認
 3. `slick.css` および `slick.min.js` などの Slick 関連アセットを削除
 
@@ -265,4 +265,4 @@ $(function () {
 ## 関連ファイル
 
 - `s/app_published/list_tamesu--swiper.html` - 変更対象ファイル
-- `s/app_published/list_tamesu.html` - Slick を引き続き使用しているファイル（未変更）
+- `s/app_published/list_tamesu--original.html` - Slick を引き続き使用しているファイル（未変更）
