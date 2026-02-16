@@ -324,7 +324,6 @@
     <!-- ページ固有 Style -->
     <link rel="stylesheet" href="//www.moratame.net/css/p9255-common--sp.css?2026012611" />
     <link rel="stylesheet" href="//www.moratame.net/css/p9255-top--sp.css?2026012611" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="list_tamesu--swiper.css">
     <!-- //ページ固有 Style -->
 
@@ -373,15 +372,6 @@
               </div>
             </div>
             <input type="hidden" name="event_name[]" value="tame_list" />
-            <!-- Navigation付き Slider（Swiper同期） -->
-            <div class="category-swiper-wrap">
-              <div class="swiper nav-swiper" id="nav">
-                <div class="swiper-wrapper" id="nav-wrapper"></div>
-              </div>
-              <div class="swiper main-swiper" id="main">
-                <div class="swiper-wrapper" id="main-wrapper"></div>
-              </div>
-            </div>
             <div class="container" id="photocolle-instagram-content">
               <div>
                 <section>
@@ -4940,59 +4930,4 @@ $(function(){
     </script>
     <!-- /検索件数表示 -->
     <script type="text/javascript" src="https://www.moratame.net/js/favorite.js?2026012611"></script>
-    <!-- Swiper JS（category-swiper-wrap 用） -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-      (function () {
-        var categorySwiperSlides = [
-          { label: 'Overview', title: 'Overview', desc: 'メインをスワイプしても、上のナビが同期して中央に来ます。' },
-          { label: 'Specs', title: 'Specs', desc: 'ナビをスワイプしてタブ選択→メインがスライドします。' },
-          { label: 'Gallery', title: 'Gallery', desc: 'Thumbs 機能で完全同期（双方向）しています。' },
-          { label: 'Reviews', title: 'Reviews', desc: 'active なナビは常に中央寄せ（centeredSlides）。' },
-          { label: 'FAQ', title: 'FAQ', desc: 'タブは可変幅（slidesPerView: \'auto\'）。' },
-          { label: 'Support', title: 'Support', desc: 'クリックでもスワイプでも同期。' },
-          { label: 'Related', title: 'Related', desc: '必要ならURL連動やHash連動も追加できます。' },
-        ];
-        var navWrapper = document.getElementById('nav-wrapper');
-        var mainWrapper = document.getElementById('main-wrapper');
-        if (!navWrapper || !mainWrapper) return;
-        navWrapper.innerHTML = categorySwiperSlides.map(function (s) {
-          return '<div class="swiper-slide"><button class="nav-btn" type="button">' + s.label + '</button></div>';
-        }).join('');
-        mainWrapper.innerHTML = categorySwiperSlides.map(function (s) {
-          return '<div class="swiper-slide"><div class="card"><div><h2>' + s.title + '</h2><p>' + s.desc + '</p></div></div></div>';
-        }).join('');
-        var navEl = document.getElementById('nav');
-        var mainEl = document.getElementById('main');
-        var slideCount = categorySwiperSlides.length;
-        var navSwiper = new Swiper('#nav', {
-          slidesPerView: 'auto',
-          spaceBetween: 10,
-          centeredSlides: true,
-          centeredSlidesBounds: true,
-          slideToClickedSlide: true,
-          watchSlidesProgress: true,
-          loop: true,
-          loopedSlides: slideCount,
-          initialSlide: 0,
-        });
-        var mainSwiper = new Swiper('#main', {
-          spaceBetween: 12,
-          speed: 420,
-          threshold: 8,
-          loop: true,
-          loopedSlides: slideCount,
-          initialSlide: 0,
-          thumbs: { swiper: navSwiper },
-        });
-        navSwiper.slideToLoop(0, 0);
-        mainSwiper.slideToLoop(0, 0);
-        navEl.querySelectorAll('.nav-btn').forEach(function (btn, index) {
-          btn.addEventListener('click', function () { mainSwiper.slideToLoop(index); });
-        });
-        mainSwiper.on('slideChange', function () {
-          navSwiper.slideToLoop(mainSwiper.realIndex);
-        });
-      })();
-    </script>
   </body>
