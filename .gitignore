@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
+env/
+.env/
+*.egg-info/
+.eggs/
+*.egg
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# Logs & temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE (必要に応じて .vscode/ を外して共有設定をコミット可)
+.idea/
+*.sublime-project
+*.sublime-workspace
