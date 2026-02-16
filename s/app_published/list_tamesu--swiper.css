@@ -13,6 +13,9 @@
   position: fixed;
   right: 10px;
 }
+.p-global-nav--sticky {
+  z-index: 2;
+}
 
 .sort_image {
   height: 40px;
