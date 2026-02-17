@@ -63,7 +63,7 @@
   - Slick は使わない。タブは **クリックで切り替え**（`.tab-nav-item`, `.tab-content`, `data-tab`）。
   - タブ用クラス: `tab-nav-item`, `active`, `data-tab="0"` / `data-tab="1"`。
   - コンテンツ用: `tab-content`, `active`, `data-tab="0"` / `data-tab="1"`。
-  - タブ切り替え JS（sessionStorage・GA・検索/ソートアイコン制御など）が body 末尾付近にあり、REFACTORING.md に概要あり。
+  - タブ切り替えは **Vanilla JS（jQuery 非依存）** で実装（sessionStorage・GA・検索/ソートアイコン制御など）。body 末尾付近にあり、REFACTORING.md に概要あり。
 
 ### 4.2 カードエリア（タメせる 1 タブ目の中身）
 
@@ -101,7 +101,7 @@
    - Slick の読み込み（`slick.css` / `slick.min.js`）を削除。
    - `.nav_slider` を、`list_tamesu--swiper.html` と同様のマークアップに変更（`.p-global-nav__menu-list` と `tab-nav-item` / `data-tab`）。
    - `.main_slider` 内の 2 ブロックに `tab-content` / `data-tab` / `active` を付与。
-   - タブ切り替え用 JS を `list_tamesu--swiper.html` から移植（クリック、sessionStorage、GA、検索/ソートアイコン、必要ならスクロール）。
+   - タブ切り替え用の Vanilla JS を `list_tamesu--swiper.html` から移植（クリック、sessionStorage、GA、検索/ソートアイコン、必要ならスクロール）。
 
 2. **カードエリアの構造変更（タメせる側）**
    - 「1 リストのみ」の `<div class="container">` を、`.top` > `.top-c-cards-container` に置き換え。

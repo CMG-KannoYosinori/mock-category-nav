@@ -8592,7 +8592,7 @@
           // 遷移前に指定されたタブ番号があれば取得
           var SearchParams = new URLSearchParams(window.location.search);
           var selectTabNum = SearchParams.get('selectTabNum');
-          var event_name_arr = $('input[name="event_name[]"]');
+          var event_name_arr = document.querySelectorAll('input[name="event_name[]"]');
 
           // 指定されたタブ番号がない場合は遷移前のタブ番号を取得
           if (selectTabNum == null) {
@@ -8603,47 +8603,41 @@
           }
           selectTabNum = parseInt(selectTabNum, 10);
 
-          // タブナビゲーションの実装
-          $(function () {
-            var $tabNavItems = $('.tab-nav-item');
-            var $tabContents = $('.tab-content');
-            var $h_sch_app = $('#h_sch_app');
+          // タブナビゲーションの実装（Vanilla JS）
+          function initTabNav() {
+            var tabNavItems = document.querySelectorAll('.tab-nav-item');
+            var tabContents = document.querySelectorAll('.tab-content');
+            var h_sch_app = document.getElementById('h_sch_app');
 
-            // タブ切り替え関数
             function switchTab(tabIndex) {
               // タブのアクティブ状態を更新
-              $tabNavItems.removeClass('active');
-              $tabNavItems.eq(tabIndex).addClass('active');
-
-              // コンテンツの表示/非表示を切り替え
-              $tabContents.removeClass('active');
-              $tabContents.eq(tabIndex).addClass('active');
+              tabNavItems.forEach(function (el, i) {
+                el.classList.toggle('active', i === tabIndex);
+              });
+              tabContents.forEach(function (el, i) {
+                el.classList.toggle('active', i === tabIndex);
+              });
 
               // セッションに保存
               window.sessionStorage.setItem('currentSlide', tabIndex);
 
               // 検索アイコンの表示/非表示
-              if ($h_sch_app != null) {
-                if (tabIndex == 0) {
-                  $h_sch_app.css("display", "block");
-                } else {
-                  $h_sch_app.css("display", "none");
-                }
+              if (h_sch_app) {
+                h_sch_app.style.display = tabIndex === 0 ? 'block' : 'none';
               }
 
               // 表示しているタブ名を取得
-              var page_name = event_name_arr[tabIndex].value;
-
-              if (page_name == 'mora_list') {
-                $('#sort_icon').hide();
-              } else {
-                $('#sort_icon').show();
+              var page_name = event_name_arr[tabIndex] ? event_name_arr[tabIndex].value : '';
+              var sort_icon = document.getElementById('sort_icon');
+              if (sort_icon) {
+                sort_icon.style.display = page_name === 'mora_list' ? 'none' : '';
               }
 
               // アプリの場合は計測を除外する
-              if (!($('#header_nav_app').length)) {
-                // analyticsのイベントを送信
-                ga('send', 'event', 'sp_top', 'tab_change', '' + page_name + '');
+              if (!document.getElementById('header_nav_app')) {
+                if (typeof ga === 'function') {
+                  ga('send', 'event', 'sp_top', 'tab_change', page_name);
+                }
               }
 
               // ページトップにスクロール
@@ -8651,15 +8645,23 @@
             }
 
             // タブクリックイベント
-            $tabNavItems.on('click', function () {
-              var tabIndex = parseInt($(this).data('tab'), 10);
-              switchTab(tabIndex);
+            tabNavItems.forEach(function (el) {
+              el.addEventListener('click', function () {
+                var tabIndex = parseInt(this.getAttribute('data-tab'), 10);
+                switchTab(tabIndex);
+              });
             });
 
             // 初期タブを設定
             var initialTab = parseInt(selectTabNum, 10) || 0;
             switchTab(initialTab);
-          });
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTabNav);
+          } else {
+            initTabNav();
+          }
         </script>
         <script type="text/javascript">
           const LENGTH_TOP = 30;

@@ -98,9 +98,9 @@ Slick カルーセルライブラリの初期化コードと設定オプショ�
 
 #### タブナビゲーションの実装
 
-新しいタブ切り替えロジックを実装しました。
+新しいタブ切り替えロジックを実装しました。**Vanilla JS（jQuery 非依存）**で実装しています。
 
-**実装箇所**: 約 8608-8661 行目
+**実装箇所**: 約 8591-8675 行目
 
 **主な機能**:
 
@@ -131,40 +131,42 @@ Slick カルーセルライブラリの初期化コードと設定オプショ�
 6. **ページトップへのスクロール**
    - タブ切り替え時に自動的にページトップへスクロール
 
-**実装コードの主要部分**:
+**実装コードの主要部分**（Vanilla JS）:
 
 ```javascript
-$(function () {
-  var $tabNavItems = $(".tab-nav-item")
-  var $tabContents = $(".tab-content")
+function initTabNav() {
+  var tabNavItems = document.querySelectorAll(".tab-nav-item");
+  var tabContents = document.querySelectorAll(".tab-content");
+  var h_sch_app = document.getElementById("h_sch_app");
 
-  // タブ切り替え関数
   function switchTab(tabIndex) {
-    // タブのアクティブ状態を更新
-    $tabNavItems.removeClass("active")
-    $tabNavItems.eq(tabIndex).addClass("active")
-
-    // コンテンツの表示/非表示を切り替え
-    $tabContents.removeClass("active")
-    $tabContents.eq(tabIndex).addClass("active")
-
-    // セッションに保存
-    window.sessionStorage.setItem("currentSlide", tabIndex)
-
-    // その他の処理（検索アイコン、ソートアイコン、GA送信など）
+    tabNavItems.forEach(function (el, i) {
+      el.classList.toggle("active", i === tabIndex);
+    });
+    tabContents.forEach(function (el, i) {
+      el.classList.toggle("active", i === tabIndex);
+    });
+    window.sessionStorage.setItem("currentSlide", tabIndex);
+    // 検索アイコン、ソートアイコン、GA送信、スクロールなど
     // ...
   }
 
-  // タブクリックイベント
-  $tabNavItems.on("click", function () {
-    var tabIndex = parseInt($(this).data("tab"), 10)
-    switchTab(tabIndex)
-  })
+  tabNavItems.forEach(function (el) {
+    el.addEventListener("click", function () {
+      var tabIndex = parseInt(this.getAttribute("data-tab"), 10);
+      switchTab(tabIndex);
+    });
+  });
 
-  // 初期タブを設定
-  var initialTab = parseInt(selectTabNum, 10) || 0
-  switchTab(initialTab)
-})
+  var initialTab = parseInt(selectTabNum, 10) || 0;
+  switchTab(initialTab);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initTabNav);
+} else {
+  initTabNav();
+}
 ```
 
 #### 不要になった関数
@@ -192,7 +194,7 @@ function readaptHeight() {
 - `lazyLoad: 'progressive'`
 - 関連するコメント
 
-この削除作業中に、`$(function () { ... });` ブロックの閉じ括弧 `});` が誤って削除されましたが、後で修正し、JavaScript の構文を正しく復元しました。
+この削除作業中に、当時の `$(function () { ... });` ブロックの閉じ括弧が誤って削除されましたが、後で修正しました。現在はタブナビゲーションを Vanilla JS で実装しており、`DOMContentLoaded` で初期化しています。
 
 ---
 
@@ -244,7 +246,7 @@ function readaptHeight() {
 
 ### 使用技術
 
-- **jQuery**: タブクリックイベントの処理、DOM 操作
+- **Vanilla JS**: タブクリックイベントの処理、DOM 操作（タブナビゲーションは jQuery 非依存）
 - **sessionStorage**: タブ状態の永続化
 - **Google Analytics**: タブ切り替えイベントの計測
 
