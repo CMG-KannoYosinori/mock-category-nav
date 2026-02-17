@@ -43,6 +43,7 @@
 - このページ用のスタイル（`list_tamesu--swiper.css`）は、**このページにだけ**効くようにスコープされています。
 - **HTML:** `<body>` にクラス `list_tamesu` を付与しています（`<body class="list_tamesu">`）。
 - **CSS:** 上記 CSS 内のセレクタはすべて `.list_tamesu` の子孫に限定されています。
+- **読み込み:** `list_tamesu--swiper.css` は、**このページ（list_tamesu）を適用するページでのみ**読み込んでください。他ページでは読み込まないようにしてください。
 - 同じ CSS を他ページでも読み込む場合、`body` に `list_tamesu` がないページではスタイルが当たらないため、他ページへの影響を避けられます。**このページを組み込む際は、必ず `body` に `list_tamesu` を付けてください。**
 
 ---
