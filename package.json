@@ -1,0 +1,15 @@
+{
+  "name": "mock-category-nav",
+  "private": true,
+  "volta": {
+    "node": "20.19.0",
+    "npm": "11.4.0"
+  },
+  "scripts": {
+    "purgecss": "purgecss --config purgecss.config.js",
+    "purgecss:run": "purgecss --config purgecss.config.js"
+  },
+  "devDependencies": {
+    "purgecss": "^5.0.0"
+  }
+}

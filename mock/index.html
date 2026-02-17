@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation付き Slider（Swiper同期）</title>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+      :root {
+        --nav-h: 56px;
+        --gap: 12px;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP",
+          "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+        background: #0b0c10;
+        color: #eaeaf0;
+      }
+
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 16px;
+        box-sizing: border-box;
+      }
+
+      /* ナビ（タブ） */
+      .nav-swiper {
+        height: var(--nav-h);
+        margin-bottom: 12px;
+      }
+
+      .nav-swiper .swiper-slide {
+        width: auto;
+        /* important: 可変幅タブ */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-btn {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: #eaeaf0;
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform 0.15s ease, background 0.15s ease,
+          border-color 0.15s ease;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Swiperが付与する active を利用して見た目変更 */
+      .nav-swiper .swiper-slide-thumb-active .nav-btn {
+        background: rgba(99, 102, 241, 0.22);
+        border-color: rgba(99, 102, 241, 0.7);
+        transform: scale(1.05);
+      }
+
+      /* メイン */
+      .main-swiper {
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .main-swiper .swiper-slide {
+        height: 320px;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      .card {
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .card p {
+        margin: 0;
+        opacity: 0.85;
+      }
+
+      /* オプション：スワイプの気持ちよさ */
+      .swiper {
+        touch-action: pan-y;
+        /* 横スワイプ優先（縦スクロールも可） */
+      }
+
+      /* 端末が細い場合の高さ調整 */
+      @media (max-width: 480px) {
+        .main-swiper .swiper-slide {
+          height: 260px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <!-- ナビゲーション -->
+      <div class="swiper nav-swiper" id="nav">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><button class="nav-btn" type="button">Overview</button></div>
+          <div class="swiper-slide"><button class="nav-btn" type="button">Specs</button></div>
+          <div class="swiper-slide"><button class="nav-btn" type="button">Gallery</button></div>
+          <div class="swiper-slide"><button class="nav-btn" type="button">Reviews</button></div>
+          <div class="swiper-slide"><button class="nav-btn" type="button">FAQ</button></div>
+          <div class="swiper-slide"><button class="nav-btn" type="button">Support</button></div>
+          <div class="swiper-slide"><button class="nav-btn" type="button">Related</button></div>
+        </div>
+      </div>
+
+      <!-- メインコンテンツ -->
+      <div class="swiper main-swiper" id="main">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="card">
+              <div>
+                <h2>Overview</h2>
+                <p>メインをスワイプしても、上のナビが同期して中央に来ます。</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card">
+              <div>
+                <h2>Specs</h2>
+                <p>ナビをスワイプしてタブ選択→メインがスライドします。</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card">
+              <div>
+                <h2>Gallery</h2>
+                <p>Thumbs 機能で完全同期（双方向）しています。</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card">
+              <div>
+                <h2>Reviews</h2>
+                <p>active なナビは常に中央寄せ（centeredSlides）。</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card">
+              <div>
+                <h2>FAQ</h2>
+                <p>タブは可変幅（slidesPerView: 'auto'）。</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card">
+              <div>
+                <h2>Support</h2>
+                <p>クリックでもスワイプでも同期。</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card">
+              <div>
+                <h2>Related</h2>
+                <p>必要ならURL連動やHash連動も追加できます。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      // 1) ナビ（タブ）
+      const navSwiper = new Swiper("#nav", {
+        slidesPerView: "auto",
+        spaceBetween: 10,
+        centeredSlides: true,          // アクティブを中央に寄せる
+        centeredSlidesBounds: true,    // 端での不自然な余白を抑える
+        slideToClickedSlide: true,     // タブクリックでスライド移動
+        watchSlidesProgress: true,     // Thumbs同期に必要
+      });
+
+      // 2) メイン
+      const mainSwiper = new Swiper("#main", {
+        spaceBetween: 12,
+        speed: 420,
+        threshold: 8,
+        // ナビと双方向同期
+        thumbs: { swiper: navSwiper },
+      });
+
+      // クリック対象が button の場合でも確実に動くように補強（任意）
+      // slideToClickedSlide だけでも動くことが多いですが、要件的に堅めにしておきます。
+      document.querySelectorAll("#nav .nav-btn").forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          mainSwiper.slideTo(index);
+        });
+      });
+
+      // 追加の補強：メインが変わった時、ナビを中央へ寄せる（Thumbsでも基本されるが確実に）
+      mainSwiper.on("slideChange", () => {
+        navSwiper.slideTo(mainSwiper.activeIndex);
+      });
+    </script>
+  </body>
+
+</html>
