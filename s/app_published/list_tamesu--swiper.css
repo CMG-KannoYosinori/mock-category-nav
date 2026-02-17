@@ -70,7 +70,6 @@
     border-bottom 0.3s;
 }
 
-
 /* Swiper */
 
 /* ===== pass_monitor.css ===== */
@@ -88,7 +87,7 @@
   background-color: #142b88;
 }
 .c-label-2.c-label-2--few {
-  background-color: #1CC1CC;
+  background-color: #1cc1cc;
 }
 
 .p-project-lists {
@@ -163,10 +162,11 @@
   font-size: 14px;
   background-color: #e2f0f8;
   color: #a5cbe8;
+  max-width: 740px;
 }
 .mySwiper2 .swiper-slide {
-  padding-top: 10px;
-  padding-bottom: 8px;
+  padding-top: 14px;
+  padding-bottom: 12px;
   line-height: 1;
   width: auto;
 }
