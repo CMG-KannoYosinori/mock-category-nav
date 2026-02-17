@@ -169,18 +169,22 @@ if (document.readyState === "loading") {
 }
 ```
 
-#### 不要になった関数
+#### 不要になった関数（削除済み）
 
-`readaptHeight` 関数は、Slick 削除に伴い不要になったため、関数本体は空とし、コメントで明示しています。`nextList()` などからの呼び出しは互換性のため残しています。
+`readaptHeight` 関数は、Slick 削除に伴い不要になったため、当初は関数本体を空にして残していました。
 
-**箇所**: 約 8682-8689 行目
+#### 「もっと見る」関連コードのクリーンナップ
 
-```javascript
-function readaptHeight() {
-  // Slick削除に伴い、この関数は不要になりました
-  // 必要に応じて別の高さ調整ロジックを実装してください
-}
-```
+「もっと見る」機能は使用していないため、以下のコードを削除しました。
+
+**削除したブロック**（旧 約 8666-8692 行目）:
+
+- `LENGTH_TOP`, `offset_top`, `hasMoreProject`, `addListCnt`, `dfd`（jQuery Deferred）
+- `showOrHideMoreButton()` … `#oplist` の表示/非表示
+- `nextList()` … `dfd` 解決後に `readaptHeight()` を呼ぶ処理
+- `readaptHeight()` … Slick 削除後は空だった高さ調整用スタブ
+
+上記により、未使用の「もっと見る」用変数・関数および `readaptHeight` の互換用スタブを一括で削除しています。
 
 ---
 

@@ -8663,33 +8663,6 @@
             initTabNav();
           }
         </script>
-        <script type="text/javascript">
-          const LENGTH_TOP = 30;
-          var offset_top = 1;
-          var hasMoreProject = true;
-          var addListCnt = 0;
-          var dfd = $.Deferred();
-
-          function showOrHideMoreButton() {
-            var moreButton = $("#oplist");
-            if (hasMoreProject == true) {
-              moreButton.show();
-            } else {
-              moreButton.hide();
-            }
-          }
-
-          function nextList() {
-            dfd.promise().then(function () {
-              readaptHeight();
-            });
-          };
-
-          function readaptHeight() {
-            // Slick削除に伴い、この関数は不要になりました
-            // 必要に応じて別の高さ調整ロジックを実装してください
-          }
-        </script>
       </div>
     </div>
     <!-- modal -->
