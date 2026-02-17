@@ -169,10 +169,6 @@ if (document.readyState === "loading") {
 }
 ```
 
-#### 不要になった関数（削除済み）
-
-`readaptHeight` 関数は、Slick 削除に伴い不要になったため、当初は関数本体を空にして残していました。
-
 #### 「もっと見る」関連コードのクリーンナップ
 
 「もっと見る」機能は使用していないため、以下のコードを削除しました。
@@ -183,8 +179,6 @@ if (document.readyState === "loading") {
 - `showOrHideMoreButton()` … `#oplist` の表示/非表示
 - `nextList()` … `dfd` 解決後に `readaptHeight()` を呼ぶ処理
 - `readaptHeight()` … Slick 削除後は空だった高さ調整用スタブ
-
-上記により、未使用の「もっと見る」用変数・関数および `readaptHeight` の互換用スタブを一括で削除しています。
 
 ---
 
@@ -226,23 +220,6 @@ if (document.readyState === "loading") {
 - `slick.css` や `slick.min.js` などの Slick 関連アセットの読み込みは行っていません
 - ファイル内から Slick 初期化コード、設定オプション、Slick 依存の処理をすべて削除しました
 
-### プロジェクト全体での利用状況
-
-- 同ディレクトリ内の `list_tamesu--original.html` では、依然として Slick が使用されています
-  - `slick.css` および `slick.min.js` が読み込まれています
-  - `.nav_slider` と `.main_slider` に対して Slick が初期化されています
-
-**結論**: 「他に Slick を使っている箇所がなければアセットを削除」という条件は満たされていないため、**Slick の共通アセット自体はプロジェクトから削除していません**。
-
----
-
-## 今後の対応（オプション）
-
-プロジェクト全体から Slick を完全に削除する場合は、以下の手順が必要です:
-
-1. `list_tamesu--original.html` も同様にタブナビゲーションにリファクタリング
-2. プロジェクト内で Slick が使用されていないことを確認
-3. `slick.css` および `slick.min.js` などの Slick 関連アセットを削除
 
 ---
 
@@ -275,4 +252,5 @@ if (document.readyState === "loading") {
 ## 関連ファイル
 
 - `s/app_published/list_tamesu--swiper.html` - 変更対象ファイル
-- `s/app_published/list_tamesu--original.html` - Slick を引き続き使用しているファイル（未変更）
+- `s/app_published/list_tamesu--original.html` - Slick を引き続き使用している編集前の
+ファイル（未変更）

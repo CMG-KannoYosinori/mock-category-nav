@@ -15,45 +15,22 @@
 
 ---
 
-## 2. 変更履歴（Git）の要点
 
-実装の経緯を追うときの目安です。
-
-| コミット | 内容 |
-|----------|------|
-| `613d7bf` | 作業ファイル作成 |
-| `4b7438e` | Slick カルーセル → タブナビゲーションへリファクタリング（タメせる／メディタメ） |
-| `0beaea8` | CSS 別ファイル化 |
-| `bfedb34` | swiper UI 挿入 |
-| `95f6caa` | swiper ループ処理 |
-| `9b39993` | current を中央配置 |
-| `80dbe52` | mock の Swiper UI を list_tamesu--swiper に適用、ナビタブ中央配置 |
-| `7ff4dff` | Purge CSS 導入 |
-| `35f593a` | swiper ブロック削除（重複ブロックの整理） |
-| `1522125` | カテゴリー振り分け |
-| `7d90d8f` | タグとじ不足の修正 |
-| `dad1719` | スタイル整理・不要コード削除 |
-
-詳細は `git log --oneline` で確認してください。
-
----
-
-## 3. 既存 MD ファイルの位置づけと更新状況
+## 2. 既存 MD ファイルの位置づけと更新状況
 
 | ファイル | 内容 | 更新状況 |
 |----------|------|----------|
 | **list_tamesu--swiper_運用注意点.md** | カテゴリナビ（Swiper）の運用注意（数・順序・HTML 構造・トラブル時確認項目） | 現在の swiper 実装に沿っている。**実装時は必ず参照。** |
 | **REFACTORING.md** | Slick → タブナビへのリファクタリング内容（タブの HTML/CSS/JS、sessionStorage、GA 等） | タブ部分の経緯は有効。ただし **list_tamesu--swiper.html は現在 Slick ではなく Swiper でカテゴリナビを実装**しているため、「Slick 削除」の記述はタブまわり（タメせる／メディタメ）の話と理解すること。 |
-| **README.md** | 参考リンク（au モラタメ等）のみ。 | 情報が少ない。必要に応じて拡張可。 |
-| **APPLY_MOCK_UI.md** | mock UI 適用について。本文は「適用は削除済み」のみ。 | 古い適用手順は削除済み。現状の説明としては不足気味。 |
+| **README.md** | リポジトリ概要、Swiper 参考リンク（au モラタメ）、ファイルの役割（HTML/CSS・ドキュメント・スクリプト・PurgeCSS 等）。 | 現状に沿っている。 |
 
 **注意**: 上記 MD は情報が古い・不足している可能性があります。実装時は **list_tamesu--swiper.html / list_tamesu--swiper.css の実装を正とし**、MD は補足として使ってください。
 
 ---
 
-## 4. original と swiper の主な差分
+## 3. original と swiper の主な差分
 
-### 4.1 ヘッダー・タブ（タメせる／メディタメ）
+### 3.1 ヘッダー・タブ（タメせる／メディタメ）
 
 - **original**
   - Slick: `slick.css` / `slick.min.js` を読み込み。
@@ -65,7 +42,7 @@
   - コンテンツ用: `tab-content`, `active`, `data-tab="0"` / `data-tab="1"`。
   - タブ切り替えは **Vanilla JS（jQuery 非依存）** で実装（sessionStorage・GA・検索/ソートアイコン制御など）。body 末尾付近にあり、REFACTORING.md に概要あり。
 
-### 4.2 カードエリア（タメせる 1 タブ目の中身）
+### 3.2 カードエリア（タメせる 1 タブ目の中身）
 
 - **original**
   - カテゴリ分けなし。`<div class="container">` → `<ul class="list14 ..." id="content">` の **1 リスト**のみ。
@@ -76,7 +53,7 @@
   - コンテンツ用: `.mySwiper3`（`.swiper` > `.swiper-wrapper` > カテゴリ数だけ `.swiper-slide`。各スライド内に `<ul class="list14 ...">` のカードリスト）。
   - Swiper 8 の Controller で「タブ ⇔ コンテンツ」を双方向連動。ループ有効。`loopedSlides` はメニューのスライド数に合わせて設定。
 
-### 4.3 読み込みアセット
+### 3.3 読み込みアセット
 
 - **original**
   - `slick.css`, `slick.min.js`（ヘッダー内）。
@@ -85,7 +62,7 @@
   - **専用 CSS**: `list_tamesu--swiper.css`（body 内で相対パス読み込み。タブ・Swiper・グローバルナビなど）。
   - Slick は読み込まない。
 
-### 4.4 JavaScript
+### 3.4 JavaScript
 
 - **original**
   - `.nav_slider` / `.main_slider` の Slick 初期化、`slickGoTo`、`slickCurrentSlide`、`slick-center` のスタイル、高さ調整など。
@@ -95,7 +72,7 @@
 
 ---
 
-## 5. original を swiper のようにアップデートする手順（実装チーム向け）
+## 4. original を swiper のようにアップデートする手順（実装チーム向け）
 
 1. **タブ（タメせる／メディタメ）の置き換え**
    - Slick の読み込み（`slick.css` / `slick.min.js`）を削除。
@@ -108,27 +85,20 @@
    - その中に `.mySwiper2`（カテゴリ名のスライド）と `.mySwiper3`（カテゴリごとのカードスライド）を追加。
    - カテゴリ名・順序は **list_tamesu--swiper_運用注意点.md** に従い、メニューとコンテンツの**数・順序を一致**させる。
 
-3. **データのカテゴリ振り分け**
-   - 総合リストをカテゴリ別に振り分ける必要がある場合、`scripts/categorize_cards.py`（キーワードでカテゴリ分類）を参照。
-   - スライド HTML の一括差し替えには `scripts/apply_category_slides.py`（`category_slides_output.txt` で食品〜クーポンのスライドを置換）を使用可能。
-
-4. **CSS の追加**
+3. **CSS の追加**
    - `list_tamesu--swiper.css` を同じ相対パスで読み込む（または内容を既存 CSS にマージ）。
    - タブ（`.tab-nav-item`, `.tab-content`）および Swiper 用のスタイルが含まれていることを確認。
 
-5. **Swiper の読み込みと初期化**
+4. **Swiper の読み込みと初期化**
    - head に `swiper-bundle.min.css`、body 末尾に `swiper-bundle.min.js` を追加。
    - `list_tamesu--swiper.html` 末尾の Swiper 初期化スクリプト（`.mySwiper2` / `.mySwiper3`、`controller`、`loopedSlides`）を移植。
 
-6. **Slick 関連の削除**
+5. **Slick 関連の削除**
    - `.nav_slider` / `.main_slider` の Slick 初期化・イベント・高さ調整などのコードをすべて削除。
-
-7. **PurgeCSS（任意）**
-   - 本番で `list_tamesu--swiper.css` を配布する場合、`npm run purgecss` で未使用スタイルを削除する運用が可能。`purgecss.config.js` の content に対象 HTML を指定済み。
 
 ---
 
-## 6. 運用・トラブル時の参照
+## 5. 運用・トラブル時の参照
 
 - **list_tamesu--swiper_運用注意点.md**  
   - メニューとコンテンツの数・順序、`.top-c-cards-container` / `.mySwiper2` / `.mySwiper3` の前提、ループ、確認項目。
@@ -138,7 +108,7 @@
 
 ---
 
-## 7. 実装チェックリスト
+## 6. 実装チェックリスト
 
 - [ ] タメせる／メディタメを Slick からタブ（tab-nav-item / tab-content）に変更した
 - [ ] タブ用 JS（クリック・sessionStorage・GA・アイコン制御）を移植した
@@ -147,9 +117,7 @@
 - [ ] Swiper の CSS/JS を読み込み、初期化（controller / loopedSlides）を移植した
 - [ ] list_tamesu--swiper.css を読み込んだ（または同等スタイルを適用）
 - [ ] Slick の読み込み・初期化・関連コードをすべて削除した
-- [ ] 必要なら categorize_cards.py / apply_category_slides.py でデータ・スライドを更新した
-- [ ] （任意）PurgeCSS で CSS を最適化した
 
 ---
 
-*このドキュメントは、git 履歴と既存 MD・HTML/CSS を確認したうえで作成しています。実装時は必ず list_tamesu--swiper.html / list_tamesu--swiper.css を正本として参照してください。*
+*このドキュメントは、既存 HTML/CSS を確認したうえで作成しています。実装時は必ず list_tamesu--swiper.html / list_tamesu--swiper.css を正本として参照してください。*
